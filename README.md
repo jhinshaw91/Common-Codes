@@ -107,3 +107,68 @@ str(codes)
 ###Now starting with question #2 Nicaragua en Paz. 
 # the file is stored /Users/jhinshaw/Desktop/text file circles/Nicaragua en Paz.rqda"
 summaryCodings()
+
+# PLOTS PLOTS PLOTS 
+#box plot code
+boxplot(Var1,var2)
+
+#the following will use ggplot with tidyverse, using data set examples from online 
+#All Nationally designated sites in Massachusetts
+mass <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/mass.csv")
+##example scatterplot
+head(ca)
+ggplot(data=ca)
+ggplot(data = ca) +
+    geom_point(aes(x = year, y = visitors, color = park_name))
+## another example 
+head(se)
+ggplot(data = se) +
+    geom_point(aes(x = year, y = visitors, color = state))+
+     labs(x = "Year",
+       y = "Visitation",
+       title = "Southeast States National Park Visitation") +
+  theme_light() +
+  theme(legend.title = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 14))
+##faceting- where each graph is separated out (split one plot into multiple)
+ggplot(data = se) +
+    geom_point(aes(x = year, y = visitors, color=state)) +
+    facet_wrap(~ state)
+##geometric objects (bar, jitter, boxplot, etc)
+ggplot(data = se) + 
+  geom_jitter(aes(x = park_name, y = visitors, color = park_name), 
+              width = 0.1, 
+              alpha = 0.4) +
+  coord_flip() +
+  theme(legend.position = "none")
+  
+##example with box plot
+ggplot(se, aes(x = park_name, y = visitors)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+## example line graph 
+ggplot(se, aes(x = year, y = visitors, color = park_name)) +
+   geom_line()
+   
+## example multiple in one graph 
+ggplot(data = acadia, aes(x = year, y = visitors)) + 
+  geom_point(color="purple") +
+  geom_line(color="blue") +
+  geom_smooth(color = "red") +
+  labs(title = "Acadia National Park Visitation",
+       y = "Visitation",
+       x = "Year") +
+  theme_bw()
+##bar graph 
+ggplot(data = visit_16, aes(x = state)) + 
+  geom_bar()
+  
+##bar graph with different fills 
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) + 
+  geom_bar(stat = "identity")
+
+## bar graph but separated out 
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) + 
+  geom_bar(stat = "identity", position = "dodge")
+
