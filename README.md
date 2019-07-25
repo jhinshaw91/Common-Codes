@@ -58,6 +58,12 @@ postansiedad<-prepostgoldbergr$PostPuntajeAnsiedad
 #wilcoxon sign rank test
 wilcox.test(preansiedad,postansiedad,paired=TRUE)
 
+#Man Whitney Test of Wilcoxon Rank Sum Test: s a nonparametric test of the null hypothesis that it is equally likely that a randomly selected value from one sample will be less than or greater than a randomly selected value from a second sample.
+
+#code for man whitney 
+
+wilcox.test(VAR1, VAR2)
+
 #Spearman correlation: nonparametric version of the Pearson product-moment correlation. Spearman's correlation coefficient, (ρ, also signified by rs) measures the strength and direction of association between two ranked variables.
 
 #load data set first and name variables 
